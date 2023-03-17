@@ -1,0 +1,30 @@
+{% extends'base.html.twig' %}
+
+{% block title %}{{ parent()}} |Détails{% endblock %}
+
+{% block body%}
+
+    <section class="container">
+
+        <div id="breadcrumb">
+            <ul>
+                <li><a href="{{ path('main_home') }}">Accueil</a></li>
+                <li>&nbsp/&nbsp</li>
+                <li><a href="{{ path('pokemon_listAll') }}">Liste des Pokemons</a></li>
+                <li>&nbsp/&nbsp</li>
+                <li>Détails</li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <div id="detailsPokemon">
+            <img src="{{ asset('img/pokemon/'~pokemon.nom~'.png') }}" alt="{{ pokemon.nom }}">
+            <p>Attaque : {{ pokemon.attaque }}</p>
+            <p>Defense : {{ pokemon.defense }}</p>
+            <p>{{ pokemon.description }}</p>
+        </div>
+
+    </section>
+
+{% endblock %}

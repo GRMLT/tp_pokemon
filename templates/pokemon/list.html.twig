@@ -1,0 +1,50 @@
+{% extends'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Liste {% endblock %}
+
+{% block body %}
+
+    <section class="container">
+
+        <div id="breadcrumb">
+            <ul>
+                <li><a href="{{ path('main_home') }}">Accueil</a></li>
+                <li>&nbsp/&nbsp</li>
+                <li>Liste des Pokemons</li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <div id="buttons">
+            <a class="btn" href="{{ path('pokemon_listByCaught') }}" class="button" id="btnSortByCaught">Trier par pokemon capturé</a>
+            <a class="btn" href="{{ path('pokemon_listByName') }}" class="button" id="btnSortByName">Trier par nom</a>
+        </div>
+
+        <hr>
+
+        <div id="liste">
+            {% for pokemon in tabPokemon %}
+
+                <article>
+                    <div>
+                        <h3>{{ pokemon.nom }}</h3>
+                        <img id="pokeball" src="{{ pokemon.isCaught ? asset('img/icon/pokeball-ok.jpg') : asset('img/icon/pokeball-ko.jpg') }}"
+                             alt="pokeball">
+                    </div>
+
+                    <a href="{{ path('pokemon_details', {'id':pokemon.id}) }}">
+                        <img id="imgPoke" src="{{ asset('img/pokemon/'~pokemon.nom~'.png') }}" alt="{{ pokemon.nom }}">
+                    </a>
+
+                    <hr>
+                    <div id="catchDiv">
+                    <a href="{{ path('pokemon_catch', {'id':pokemon.id}) }}">{{ pokemon.isCaught ? "Relacher" : "Capturer" }}</a>
+                    </div>
+                </article>
+
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}
